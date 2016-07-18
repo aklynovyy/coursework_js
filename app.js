@@ -10,11 +10,11 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 app.get('/', function (req, res) {
-  res.send(indexPage.getPage(req.query));
+    res.send(indexPage.getPage());
 });
 
-app.get('/search', function (req, res) {
-  res.send(indexPage.getPage(req.query));
+app.get('/getAllData', function (req, res) {
+  res.send(conditionsModule.getAllData());
 });
 
 app.listen(3030, function () {

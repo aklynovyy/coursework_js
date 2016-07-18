@@ -57,7 +57,8 @@ module.exports = ( function () {
 
 
 	return {
-		getDataFromDb: getDataFromDb
+		getDataFromDb: getDataFromDb,
+		getAllData: getAllData
 	}
 
 }) ();
