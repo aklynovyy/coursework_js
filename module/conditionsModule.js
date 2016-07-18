@@ -46,9 +46,9 @@ module.exports = ( function () {
 	}
 
 	var searchAllcity = function () {
-		var = result;
+		var result = [] ;
 		for (var i = 0; i < data.length; i++) {
-			result.push(data[0].terms[i].city)
+			result.push(data[0].terms[i].city);
 		}
 		// console.log(result);
 		return result;
