@@ -55,10 +55,11 @@ module.exports = ( function () {
 	};
 
 
-
 	return {
 		getDataFromDb: getDataFromDb,
-		getAllData: getAllData
+		getAllData: getAllData,
+		searchAllFish: searchAllFish,
+		searchAllcity: searchAllcity
 	}
 
 }) ();
