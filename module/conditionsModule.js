@@ -1,6 +1,6 @@
 var fs = require('fs');
 
-module.exports = ( function () {
+module.exports = (function () {
 	var dbFilePath = './data/data.json';
 
 	var getDataFromDb = function (path) {
@@ -8,58 +8,65 @@ module.exports = ( function () {
       var result = fs.readFileSync(path, 'utf8');
       return JSON.parse(result);
     } catch(e) {
+    	logger.logError('Can not read from file');
       return [];
     }
+    // console.log(getDataFromDb);
 	};
 
-	var getAllData = function () {
-		var data = getDataFromDb(dbFilePath);
+	var data = getDataFromDb(dbFilePath);
+
+  var getDataAll = function () {
 		return data;
-	}
-
-	var dataArr = getDataFromDb(dbFilePath);
-
-	var searchLocalCity = function (fishName, city) {
-		var result = [];
-		for (var i = 0; i < data.length; i++ ) {
-			if (data[i].fishName === fishName) {
-				for (var j = 0; j < data[i].terms.length; j++) {
-					if (data[i].terms[j].city === city) {
-						result.push(data[i].termsp[j]);
-					}
-				};
-			}
-		};
-
-		// console.log(result);
-		return result;
 	};
 
-	var searchAllFish = function () {
-		var result = [];
-		for (var i = 0; i < data.length; i ++) {
-			result.push(data[i].fishName);
-		}
-		
-		// console.log('result - ' + result.length);
-		return result;
-	}
-
-	var searchAllcity = function () {
-		var result = [] ;
+	var getAllDate = function () {
+		var date = [];
 		for (var i = 0; i < data.length; i++) {
-			result.push(data[0].terms[i].city);
+			date.push(data[i].date);
 		}
-		// console.log(result);
+		return date;
+	};
+
+	var getAllCity = function () {
+		var city = [];
+		for (var i = 0; i < data[0].terms.length; i++) {
+			city.push(data[0].terms[i].city);
+		}
+		return city;
+	};
+
+	var searchBySelected = function (date, city) {
+		var result = [];
+		for (var i = 0; i < data.length; ++i) {
+			if (data[i].date === date) {
+
+				for (var j = 0; data[i].terms.length; ++j) {
+					if (data[i].terms[j].city === city) {
+						result.push(data[i].terms[j]);
+					}
+				}
+			}
+		}
 		return result;
 	};
 
+	// var getDataTemp = function () {
+	// 	var temperature = [];
+	// 	for (var i = 0; i < data.length; i++) {
+
+	// 		for (var j = 0; ) {
+
+	// 		}
+	// 	}
+	// };
 
 	return {
-		getDataFromDb: getDataFromDb,
-		getAllData: getAllData,
-		searchAllFish: searchAllFish,
-		searchAllcity: searchAllcity
-	}
+		// getDataFromDb: getDataFromDb,
+		getDataAll: getDataAll,
+		getAllDate: getAllDate,
+		getAllCity: getAllCity,
+		searchBySelected: searchBySelected
+	};
 
 }) ();
