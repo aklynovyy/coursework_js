@@ -93,7 +93,7 @@ module.exports = (function () {
 			//for (var j = 0; j < data[i].city.length; j++) {
 			result += '<tr>' + 
 								//'<td>' + data[i].terms[j].city + '</td>' +//Це покаже 5 міст в кожному архіву
-								'<td>' + data[i].weatherConditions.temperature + '</td>' +
+								'<td>' + data[i].city.day[params.date - 1].weatherConditions.temperature + '</td>' +
 								'<td>' + data[i].city.day[params.date - 1].weatherConditions.weatherCharacteristics + '</td>' +
 								'<td>' + data[i].city.day[params.date - 1].weatherConditions.airPressure + '</td>' +
 								'<td>' + data[i].city.day[params.date - 1].weatherConditions.windForce + '</td>' +
