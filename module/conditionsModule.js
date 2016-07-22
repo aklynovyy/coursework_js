@@ -3,6 +3,7 @@ var fs = require('fs');
 module.exports = (function () {
 	var dbFilePath = './data/data.json';
 
+
 	var getDataFromDb = function (path) {
 		try {
       var result = fs.readFileSync(path, 'utf8');
@@ -16,7 +17,7 @@ module.exports = (function () {
 
 	var data = getDataFromDb(dbFilePath);
 
-  var getDataAll = function () {
+  var getDataAll = function () {		
 		return data;
 	};
 
@@ -38,10 +39,10 @@ module.exports = (function () {
 		return city;
 	};
 
-	var searchBySelected = function (city, date) {
+	var searchBySelected = function (date, city) {
 		var result = [];
 		for (var i = 0; i < data.length; ++i) {
-			if (data[i].city === city) {
+			if (data[i].city.name === city) {
 				for (var j = 0; j < data[i].city.day.length; ++j) {
 					if (data[i].city.day[j].date === date) {
 						result.push(data[i].city.day[j]);
@@ -49,8 +50,9 @@ module.exports = (function () {
 				}
 
 			}
-			city.push(data[i].city.name);
+			//city.push(data[i].city.name);
 		}
+		console.log(result);
 		return result;
 	};
 
