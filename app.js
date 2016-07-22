@@ -12,6 +12,7 @@ app.use(express.static('public'));
 app.get('/', function (req, res) {
     res.send(indexPage.getPage(req.query));
 });
+
 app.get('/search', function (req, res) {
   res.send(indexPage.getPage(req.query));
 });

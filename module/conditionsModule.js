@@ -20,33 +20,36 @@ module.exports = (function () {
 		return data;
 	};
 
-	var getAllDate = function () {
+	var getCityDates = function () {
 		var date = [];
-		for (var i = 0; i < data.length; i++) {
-			date.push(data[i].date);
+		for (var i = 0; i < data.length; ++i) {
+			// console.log(data[0].city.day[i].date);			
+			date.push(data[0].city.day[i].date);			
 		}
+		// console.log(data);
 		return date;
 	};
 
 	var getAllCity = function () {
 		var city = [];
-		for (var i = 0; i < data[0].terms.length; i++) {
-			city.push(data[0].terms[i].city);
+		for (var i = 0; i < data.length; ++i) {
+			city.push(data[i].city.name);
 		}
 		return city;
 	};
 
-	var searchBySelected = function (date, city) {
+	var searchBySelected = function (city, date) {
 		var result = [];
 		for (var i = 0; i < data.length; ++i) {
-			if (data[i].date === date) {
-
-				for (var j = 0; data[i].terms.length; ++j) {
-					if (data[i].terms[j].city === city) {
-						result.push(data[i].terms[j]);
+			if (data[i].city === city) {
+				for (var j = 0; j < data[i].city.day.length; ++j) {
+					if (data[i].city.day[j].date === date) {
+						result.push(data[i].city.day[j]);
 					}
 				}
+
 			}
+			city.push(data[i].city.name);
 		}
 		return result;
 	};
@@ -64,7 +67,7 @@ module.exports = (function () {
 	return {
 		// getDataFromDb: getDataFromDb,
 		getDataAll: getDataAll,
-		getAllDate: getAllDate,
+		getCityDates: getCityDates,
 		getAllCity: getAllCity,
 		searchBySelected: searchBySelected
 	};

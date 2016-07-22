@@ -1,3 +1,4 @@
+		
 var conditionsModule = require('./../module/conditionsModule.js');
 
 module.exports = (function () {
@@ -56,7 +57,7 @@ module.exports = (function () {
 		return  '<form class="row" mathod="GET" action="search">' +
 						'<input type="hidden" name="action" value="search" />' +  
 						'<div class="input-field col s4">' +
-		    		getSelectDate(conditionsModule.getAllDate()) +
+		    		getSelectDate(conditionsModule.getCityDates()) +
 		    		'<label>Select Date</label>' +
 		  			'</div>' +
 						'<div class="input-field col s5">' +
@@ -77,22 +78,26 @@ module.exports = (function () {
 		if (!data.length) {
 			return "Nothing Found";
 		}
-
+		
 		var result = '<tr>' +
 								'<th>Температура</th>' +
 								'<th>Характер Погоди</th>' +
 								'<th>Атмосферний тиск</th>' +
 								'<th>Сила вітру</th>' +
 								'<th>Рівень Води</th>' +
-								'<tr>';
-		for (var i = 0; i < data[i].terms.length; i++) {
-			result += '<tr>' +
-								'<td>' + data[i].terms.temperature + '</td>' +
-								'<td>' + data[i].terms.weatherCharacteristics + '</td>' +
-								'<td>' + data[i].terms.airPressure + '</td>' +
-								'<td>' + data[i].terms.windForce + '</td>' +
-								'<td>' + data[i].terms.waterLevel + '</td>' +
-								"</tr>";
+								'</tr>';
+								//console.log(data.terms.length);
+		for (var i = 0; i < data.length; i++) {			
+			for (var j = 0; j < data[i].city.length; j++) {
+			result += '<tr>' + 
+								//'<td>' + data[i].terms[j].city + '</td>' +//Це покаже 5 міст в кожному архіву
+								'<td>' + data[i].city.day[0].temperature + '</td>' +
+								'<td>' + data[i].city.day[0].weatherCharacteristics + '</td>' +
+								'<td>' + data[i].city.day[0].airPressure + '</td>' +
+								'<td>' + data[i].city.day[0].windForce + '</td>' +
+								'<td>' + data[i].city.day[0].waterLevel + '</td>' +
+								'</tr>';
+			}			
 		}
 		return	'<table class="responsive-table">' + result + '</table>';
 	};
