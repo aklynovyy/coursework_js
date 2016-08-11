@@ -88,18 +88,18 @@ module.exports = (function () {
 								'<th>Сила вітру</th>' +
 								'<th>Рівень Води</th>' +
 								'</tr>';
-								//console.log(data.terms.length);
+								// console.log(data.terms.length);
 		for (var i = 0; i < data.length; i++) {			
-			//for (var j = 0; j < data[i].city.length; j++) {
-			result += '<tr>' + 
-								//'<td>' + data[i].terms[j].city + '</td>' +//Це покаже 5 міст в кожному архіву
-								'<td>' + data[i].city.day[params.date - 1].weatherConditions.temperature + '</td>' +
-								'<td>' + data[i].city.day[params.date - 1].weatherConditions.weatherCharacteristics + '</td>' +
-								'<td>' + data[i].city.day[params.date - 1].weatherConditions.airPressure + '</td>' +
-								'<td>' + data[i].city.day[params.date - 1].weatherConditions.windForce + '</td>' +
-								'<td>' + data[i].city.day[params.date - 1].weatherConditions.waterLevel + '</td>' +
-								'</tr>';
-			//}			
+			for (var j = 0; j < data[i].city.length; j++) {
+				result += '<tr>' + 
+				//'<td>' + data[i].terms[j].city + '</td>' +//Це покаже 5 міст в кожному архіву
+				'<td>' + data[i].city.day[params.date - 1].weatherConditions.temperature + '</td>' +
+				'<td>' + data[i].city.day[params.date - 1].weatherConditions.weatherCharacteristics + '</td>' +
+				'<td>' + data[i].city.day[params.date - 1].weatherConditions.airPressure + '</td>' +
+				'<td>' + data[i].city.day[params.date - 1].weatherConditions.windForce + '</td>' +
+				'<td>' + data[i].city.day[params.date - 1].weatherConditions.waterLevel + '</td>' +
+				'</tr>';
+			}			
 		}
 
 		return	'<table class="responsive-table">' + result + '</table>';
@@ -130,10 +130,9 @@ module.exports = (function () {
 		} else {
 			return conditionsModule.getDataAll();
 		}
-
-
 	};
-	// console.log(getParamsData());
+	
+	console.log(getParamsData());
 
 	return {
 		getPage: getPage
